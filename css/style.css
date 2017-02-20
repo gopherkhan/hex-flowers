@@ -1,0 +1,28 @@
+
+/* Hex equations:
+	http://www.calculatorsoup.com/calculators/geometry-plane/polygon.php
+	Outer Radius (R) to Inner Radius (r)
+	r = (1/2)a cot(π/n) = R cos(π/n)
+	where a = side length and n = number of sides (6 for hex)
+*/
+.hex-grid {
+	background-color: lightslategray;
+}
+
+.hex {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	clip-path: polygon(50% 0%, 92.3% 25%, 92.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+	background-color: aliceblue;
+	transition: background-color 0.2s linear;
+	cursor: pointer;
+}
+
+.hex:hover {
+	background-color: #F2EDD8;
+}
+
+.hex.odd {
+	margin-left: -50px;
+}
