@@ -71,7 +71,6 @@ window.HexFlowers = function(cssSelector) {
 		}
 
 		function handleClick(e) {
-			console.log("@@@ handling click")
 			if (!e.target) { return; }
 			if (!e.target.classList.contains('hex')) { return; }
 			var tile = e.target;
@@ -82,7 +81,7 @@ window.HexFlowers = function(cssSelector) {
 			for (let adj of adjacentTiles) {
 				adj.style['background-color'] = color; 
 			}
-			tile.style['background-color'] = 'gold';
+			tile.style['background-color'] = color !== 'gold' ? 'gold' : '#F1A94E';
 		}
 
 		function getNextColor() {
