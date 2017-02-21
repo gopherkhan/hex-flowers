@@ -8,7 +8,10 @@ window.HexFlowers = function(cssSelector) {
 		var OFFSET = SPACER / 2;
 
 		var tiles = new Array(NUM_ROWS);
-		var colors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E', 'gold'];
+		var colors = ['#44B3C2', '#F1A94E', '#E45641', '#7B8D8E', 'gold',
+						'#32B92D',	'#FF6EB0',	'#FFCB00',	'#93228D',
+						'#B84B9E', '#F20075'];
+
 		var lastColorIdx = -1;
 
 		function constructTiles() {
