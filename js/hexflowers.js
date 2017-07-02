@@ -2,8 +2,8 @@ window.HexFlowers = function(cssSelector) {
 	if (!cssSelector) { throw "CSS target needed"; }
 	var grid = document.querySelector(cssSelector);
 		
-		var NUM_COLS = 20;
-		var NUM_ROWS = 10;
+		var NUM_COLS = Math.floor(window.innerWidth / 100); //20;
+		var NUM_ROWS = Math.floor(window.innerHeight / 90); //10;
 		var SPACER = 100;
 		var OFFSET = SPACER / 2;
 
@@ -13,12 +13,17 @@ window.HexFlowers = function(cssSelector) {
 						'#B84B9E', '#F20075'];
 
 		var lastColorIdx = -1;
+		// hex grid looks kind of gross if there's too much white
+		// space on the right side. We extend the odd (j is odd) rows
+		// by one 
+		var extendOddRows = (NUM_COLS * 100 + 50) < window.innerWidth;
 
 		function constructTiles() {
 			for (var j = 0; j < NUM_ROWS; ++j) {
-				let row = new Array(NUM_COLS);
-				for (var i = 0; i < NUM_COLS; ++i) {
-					if (i === 0 && j % 2 == 1) { continue; }
+				var numRowCols = extendOddRows && j % 2 === 1 ? NUM_COLS + 1 : NUM_COLS;
+				let row = new Array(numRowCols);
+				for (var i = 0; i < numRowCols; ++i) {
+					if (j % 2 == 1 && i === 0) { continue; }
 					row[i] = makeHexTile(i, j);
 				}
 				tiles[j] = row;
@@ -45,8 +50,8 @@ window.HexFlowers = function(cssSelector) {
 						// identity
 						continue;
 					}
-
-					if (j % 2 === 1) { // odd row
+					var isOddRow = j % 2 === 1;
+					if (isOddRow) { // odd row
 						// looks up and up/left, down and down/left
 						if (jDelta === -1 && iDelta === 1 || 
 							jDelta === 1 && iDelta === 1) {
@@ -60,9 +65,12 @@ window.HexFlowers = function(cssSelector) {
 						}
 					}
 
+					var numRowCols = (isOddRow && extendOddRows) ? 
+																		NUM_COLS + 1 : NUM_COLS;
 					let iNew = iDelta + i;
 					let jNew = jDelta + j;
-					if (jNew < 0 || jNew >= NUM_ROWS || iNew < 0 || iNew >= NUM_COLS) {
+					if (jNew < 0 || jNew >= NUM_ROWS || 
+							iNew < 0 || iNew >= numRowCols) {
 						continue;
 					}
 					if (tiles[jNew][iNew]) {
