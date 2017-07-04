@@ -13,6 +13,10 @@
 	width: 100px;
 	height: 100px;
 	position: absolute;
+	-webkit-clip-path: polygon(50px 0, 92.3px 25px, 92.3px 75px, 50px 100px, 6.7px 75px, 6.7px 25px);
+	-moz-clip-path: polygon(50px 0, 92.3px 25px, 92.3px 75px, 50px 100px, 6.7px 75px, 6.7px 25px);
+	-ms-clip-path: polygon(50px 0, 92.3px 25px, 92.3px 75px, 50px 100px, 6.7px 75px, 6.7px 25px);
+	-o-clip-path: polygon(50px 0, 92.3px 25px, 92.3px 75px, 50px 100px, 6.7px 75px, 6.7px 25px);
 	clip-path: polygon(50px 0, 92.3px 25px, 92.3px 75px, 50px 100px, 6.7px 75px, 6.7px 25px);
 	background-color: aliceblue;
 	transition: background-color 0.2s linear;
